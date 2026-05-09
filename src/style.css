@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes strawberry-fall {
+  0% {
+    transform: translateY(-120px) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.strawberry-fall {
+  position: fixed;
+  top: 0;
+  animation: strawberry-fall linear infinite;
+  user-select: none;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes float-up {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: float-up 0.4s ease forwards;
+}
