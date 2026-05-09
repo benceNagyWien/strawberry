@@ -44,38 +44,25 @@
         </span>
       </div>
 
-      <!-- Countdown -->
-      <div class="flex items-end gap-1 sm:gap-3 md:gap-5 px-3 z-10 flex-wrap justify-center">
-        <template v-for="(unit, i) in countdownUnits" :key="unit.label">
-          <div class="flex flex-col items-center">
-            <!-- Glow backdrop -->
-            <div class="relative">
-              <div class="absolute inset-0 rounded-2xl bg-rose-500/25 blur-2xl scale-110"></div>
-              <div
-                class="relative bg-white/10 border border-white/15 backdrop-blur-md rounded-2xl
-                       px-3 py-3 sm:px-6 sm:py-5 md:px-8 md:py-7 shadow-2xl shadow-black/40"
-              >
-                <span
-                  class="block text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white
-                         tabular-nums leading-none tracking-tight"
-                >
-                  {{ String(unit.value).padStart(2, '0') }}
-                </span>
-              </div>
-            </div>
+      <!-- Countdown: only days -->
+      <div class="flex flex-col items-center z-10">
+        <div class="relative">
+          <div class="absolute inset-0 rounded-2xl bg-rose-500/25 blur-2xl scale-110"></div>
+          <div
+            class="relative bg-white/10 border border-white/15 backdrop-blur-md rounded-2xl
+                   px-10 py-6 sm:px-20 sm:py-10 md:px-28 md:py-14 shadow-2xl shadow-black/40"
+          >
             <span
-              class="text-rose-300/80 text-[9px] sm:text-xs uppercase tracking-widest mt-2 sm:mt-3 font-semibold"
+              class="block text-[7rem] sm:text-[11rem] md:text-[15rem] font-black text-white
+                     tabular-nums leading-none tracking-tight"
             >
-              {{ unit.label }}
+              {{ days }}
             </span>
           </div>
-
-          <!-- Colon separator -->
-          <span
-            v-if="i < countdownUnits.length - 1"
-            class="text-rose-500/50 text-2xl sm:text-4xl md:text-6xl font-black mb-5 sm:mb-8 md:mb-12 select-none"
-          >:</span>
-        </template>
+        </div>
+        <span class="text-rose-300/80 text-xs sm:text-sm uppercase tracking-widest mt-3 font-semibold">
+          {{ days === 1 ? 'Tag' : 'Tage' }}
+        </span>
       </div>
 
       <!-- Celebration -->
@@ -86,7 +73,7 @@
         <p class="text-rose-300 mt-3 text-sm sm:text-lg">Der große Moment ist da!</p>
       </div>
 
-      <!-- Progress bar (subtle, below countdown) -->
+      <!-- Progress bar -->
       <div class="mt-10 w-full max-w-md px-8 z-10" v-if="!isZero">
         <div class="h-1 bg-white/10 rounded-full overflow-hidden">
           <div
@@ -99,21 +86,18 @@
         </p>
       </div>
 
-      <!-- Images: fixed to bottom corners, move inward with progress -->
-      <img
-        v-if="data.leftPersonImage"
-        :src="data.leftPersonImage"
-        class="fixed bottom-0 left-0 object-cover object-top rounded-tr-3xl shadow-2xl shadow-black/60"
-        :style="leftImgStyle"
-        alt="Linke Person"
-      />
-      <img
-        v-if="data.rightPersonImage"
-        :src="data.rightPersonImage"
-        class="fixed bottom-0 right-0 object-cover object-top rounded-tl-3xl shadow-2xl shadow-black/60"
-        :style="rightImgStyle"
-        alt="Rechte Person"
-      />
+      <!-- Two emojis: fixed at bottom, move closer as days approach zero -->
+      <span
+        v-if="data.leftEmoji"
+        class="fixed bottom-0 left-0 select-none leading-none z-10"
+        :style="leftEmojiStyle"
+      >{{ data.leftEmoji }}</span>
+
+      <span
+        v-if="data.rightEmoji"
+        class="fixed bottom-0 right-0 select-none leading-none z-10"
+        :style="rightEmojiStyle"
+      >{{ data.rightEmoji }}</span>
     </template>
   </div>
 </template>
@@ -143,16 +127,6 @@ const remaining = computed(() => {
 const isZero = computed(() => data.value !== null && remaining.value === 0)
 
 const days = computed(() => Math.floor(remaining.value / 86400000))
-const hours = computed(() => Math.floor((remaining.value % 86400000) / 3600000))
-const minutes = computed(() => Math.floor((remaining.value % 3600000) / 60000))
-const seconds = computed(() => Math.floor((remaining.value % 60000) / 1000))
-
-const countdownUnits = computed(() => [
-  { value: days.value, label: 'Tage' },
-  { value: hours.value, label: 'Stunden' },
-  { value: minutes.value, label: 'Minuten' },
-  { value: seconds.value, label: 'Sekunden' },
-])
 
 const progress = computed(() => {
   if (!data.value?.creationDate || !data.value?.targetDate) return 0
@@ -162,26 +136,27 @@ const progress = computed(() => {
   return Math.min(1, Math.max(0, (now.value - start) / (end - start)))
 })
 
-const imgW = computed(() => (windowWidth.value < 640 ? 110 : windowWidth.value < 1024 ? 180 : 220))
+const emojiFontSize = computed(() =>
+  windowWidth.value < 640 ? '5rem' : windowWidth.value < 1024 ? '7rem' : '9rem'
+)
 
-const imgTranslate = computed(() => {
-  const maxTranslate = windowWidth.value / 2 - imgW.value / 2
-  return progress.value * maxTranslate
+const emojiTranslate = computed(() => {
+  const d = Math.min(days.value, 30)
+  const ratio = d / 30
+  const emojiPx = windowWidth.value < 640 ? 80 : windowWidth.value < 1024 ? 112 : 144
+  const maxTranslate = Math.max(0, windowWidth.value / 2 - emojiPx / 2 - 16)
+  return (1 - ratio) * maxTranslate
 })
 
-const imgH = computed(() => (windowWidth.value < 640 ? '210px' : windowWidth.value < 1024 ? '340px' : '420px'))
-
-const leftImgStyle = computed(() => ({
-  width: `${imgW.value}px`,
-  height: imgH.value,
-  transform: `translateX(${imgTranslate.value}px)`,
+const leftEmojiStyle = computed(() => ({
+  fontSize: emojiFontSize.value,
+  transform: `translateX(${emojiTranslate.value}px)`,
   transition: 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 }))
 
-const rightImgStyle = computed(() => ({
-  width: `${imgW.value}px`,
-  height: imgH.value,
-  transform: `translateX(${-imgTranslate.value}px)`,
+const rightEmojiStyle = computed(() => ({
+  fontSize: emojiFontSize.value,
+  transform: `translateX(${-emojiTranslate.value}px)`,
   transition: 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 }))
 

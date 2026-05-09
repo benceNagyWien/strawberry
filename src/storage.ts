@@ -2,8 +2,8 @@ export interface AppData {
   targetDate: string
   creationDate: string
   flagEmoji: string
-  leftPersonImage: string
-  rightPersonImage: string
+  leftEmoji: string
+  rightEmoji: string
 }
 
 const KEY = 'countdown_data'
