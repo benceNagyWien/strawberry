@@ -52,8 +52,10 @@ const error = ref('')
 
 function handleLogin() {
   if (password.value === 'editor123') {
+    sessionStorage.setItem('auth_role', 'editor')
     router.push('/editor')
   } else if (password.value === 'user123') {
+    sessionStorage.setItem('auth_role', 'user')
     router.push('/counter')
   } else {
     error.value = 'Falsches Passwort. Bitte versuche es erneut.'

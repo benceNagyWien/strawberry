@@ -139,9 +139,27 @@
       "type": "file"
     },
     {
+      "path": "src/views/LoginView.vue",
+      "accessCount": 2,
+      "lastAccessed": 1778520474629,
+      "type": "file"
+    },
+    {
+      "path": "src/main.ts",
+      "accessCount": 2,
+      "lastAccessed": 1778520482394,
+      "type": "file"
+    },
+    {
       "path": "src/views/EditorView.vue",
       "accessCount": 1,
       "lastAccessed": 1778519526783,
+      "type": "file"
+    },
+    {
+      "path": "src/App.vue",
+      "accessCount": 1,
+      "lastAccessed": 1778520445843,
       "type": "file"
     }
   ],
