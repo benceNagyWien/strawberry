@@ -207,6 +207,8 @@ export const flagEmojis = [
 ]
 
 export const personEmojis = [
+  { emoji: '😎', name: 'Sonnenbrille' },
+  { emoji: '🐭', name: 'Maus' },
   { emoji: '👦', name: 'Junge' },
   { emoji: '👧', name: 'Mädchen' },
   { emoji: '👨', name: 'Mann' },

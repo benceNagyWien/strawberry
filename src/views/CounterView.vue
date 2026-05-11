@@ -37,11 +37,11 @@
     </div>
 
     <template v-else>
-      <!-- Flag -->
-      <div class="pt-10 pb-8 text-center z-10">
-        <span class="text-7xl md:text-8xl lg:text-9xl select-none drop-shadow-2xl animate-pulse-slow inline-block">
-          {{ data.flagEmoji || '🏳️' }}
-        </span>
+      <!-- Heading -->
+      <div class="pt-10 pb-4 text-center z-10 px-4">
+        <p class="text-white/70 text-base sm:text-lg md:text-xl font-semibold tracking-wide uppercase">
+          KB und SM Wiedersehen in…
+        </p>
       </div>
 
       <!-- Countdown: only days -->
@@ -89,15 +89,22 @@
       <!-- Two emojis: fixed at bottom, move closer as days approach zero -->
       <span
         v-if="data.leftEmoji"
-        class="fixed bottom-0 left-0 select-none leading-none z-10"
+        class="absolute top-1/2 md:top-[68%] left-0 select-none leading-none z-10"
         :style="leftEmojiStyle"
       >{{ data.leftEmoji }}</span>
 
       <span
         v-if="data.rightEmoji"
-        class="fixed bottom-0 right-0 select-none leading-none z-10"
+        class="absolute top-1/2 md:top-[68%] right-0 select-none leading-none z-10"
         :style="rightEmojiStyle"
       >{{ data.rightEmoji }}</span>
+
+      <!-- Flag: centered between the two emojis -->
+      <span
+        v-if="data.flagEmoji"
+        class="absolute top-1/2 md:top-[80%] left-1/2 select-none leading-none z-10"
+        :style="{ fontSize: emojiFontSize, transform: 'translateX(-50%) translateY(-50%)' }"
+      >{{ data.flagEmoji }}</span>
     </template>
   </div>
 </template>
@@ -150,13 +157,13 @@ const emojiTranslate = computed(() => {
 
 const leftEmojiStyle = computed(() => ({
   fontSize: emojiFontSize.value,
-  transform: `translateX(${emojiTranslate.value}px)`,
+  transform: `translateX(${emojiTranslate.value}px) translateY(-50%)`,
   transition: 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 }))
 
 const rightEmojiStyle = computed(() => ({
   fontSize: emojiFontSize.value,
-  transform: `translateX(${-emojiTranslate.value}px)`,
+  transform: `translateX(${-emojiTranslate.value}px) translateY(-50%)`,
   transition: 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 }))
 

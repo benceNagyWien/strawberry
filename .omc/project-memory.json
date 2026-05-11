@@ -1,0 +1,143 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778519298699,
+  "projectRoot": "/Users/bencenagy/Documents/Projects/sarah",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "vue",
+        "version": "3.4.0",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "5.3.0",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vue-tsc && vite build",
+      "preview": "vite preview"
+    }
+  },
+  "conventions": {
+    "namingStyle": "camelCase",
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "src"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 1,
+      "lastAccessed": 1778519298680,
+      "keyFiles": [
+        "index.html"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 5,
+      "lastAccessed": 1778519298681,
+      "keyFiles": [
+        "App.vue",
+        "emojis.ts",
+        "main.ts",
+        "storage.ts",
+        "style.css"
+      ]
+    },
+    "dist/assets": {
+      "path": "dist/assets",
+      "purpose": "Static assets",
+      "fileCount": 2,
+      "lastAccessed": 1778519298684,
+      "keyFiles": [
+        "index-BNiKOpjU.js",
+        "index-CRGJ1k1K.css"
+      ]
+    },
+    "src/views": {
+      "path": "src/views",
+      "purpose": "View templates",
+      "fileCount": 3,
+      "lastAccessed": 1778519298685,
+      "keyFiles": [
+        "CounterView.vue",
+        "EditorView.vue",
+        "LoginView.vue"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/views/CounterView.vue",
+      "accessCount": 9,
+      "lastAccessed": 1778519801881,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 2,
+      "lastAccessed": 1778519550694,
+      "type": "file"
+    },
+    {
+      "path": "src/emojis.ts",
+      "accessCount": 2,
+      "lastAccessed": 1778519551155,
+      "type": "file"
+    },
+    {
+      "path": "src/storage.ts",
+      "accessCount": 2,
+      "lastAccessed": 1778519957945,
+      "type": "file"
+    },
+    {
+      "path": "src/views/EditorView.vue",
+      "accessCount": 1,
+      "lastAccessed": 1778519526783,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
