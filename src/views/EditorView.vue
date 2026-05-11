@@ -125,8 +125,8 @@ const rightEmoji = ref('')
 const creationDate = ref('')
 const saved = ref(false)
 
-onMounted(() => {
-  const data = loadData()
+onMounted(async () => {
+  const data = await loadData()
   if (data) {
     targetDate.value = data.targetDate ? toLocalInput(data.targetDate) : ''
     flagEmoji.value = data.flagEmoji || '🇭🇺'
@@ -142,8 +142,8 @@ function toLocalInput(iso: string): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
 }
 
-function handleSave() {
-  saveData({
+async function handleSave() {
+  await saveData({
     targetDate: targetDate.value ? new Date(targetDate.value).toISOString() : '',
     creationDate: creationDate.value || new Date().toISOString(),
     flagEmoji: flagEmoji.value,

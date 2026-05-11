@@ -185,8 +185,8 @@ watch(isZero, (val) => {
 let timerInterval: ReturnType<typeof setInterval> | undefined
 const handleResize = () => { windowWidth.value = window.innerWidth }
 
-onMounted(() => {
-  data.value = loadData()
+onMounted(async () => {
+  data.value = await loadData()
   if (data.value && remaining.value === 0) generateStrawberries()
   timerInterval = setInterval(() => { now.value = Date.now() }, 1000)
   window.addEventListener('resize', handleResize)

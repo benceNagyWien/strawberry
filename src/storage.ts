@@ -6,30 +6,43 @@ export interface AppData {
   rightEmoji: string
 }
 
-const KEY = 'countdown_data'
+const LOCAL_KEY = 'countdown_data'
+const BIN_ID = import.meta.env.VITE_JSONBIN_BIN_ID as string | undefined
+const API_KEY = import.meta.env.VITE_JSONBIN_API_KEY as string | undefined
 
-function envDefaults(): AppData | null {
-  const targetDate = import.meta.env.VITE_DEFAULT_TARGET_DATE
-  if (!targetDate) return null
-  return {
-    targetDate,
-    creationDate: import.meta.env.VITE_DEFAULT_CREATION_DATE || new Date().toISOString(),
-    flagEmoji: import.meta.env.VITE_DEFAULT_FLAG_EMOJI || '🏳️',
-    leftEmoji: import.meta.env.VITE_DEFAULT_LEFT_EMOJI || '👦',
-    rightEmoji: import.meta.env.VITE_DEFAULT_RIGHT_EMOJI || '👧',
+export async function loadData(): Promise<AppData | null> {
+  if (BIN_ID && API_KEY) {
+    try {
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+        headers: { 'X-Master-Key': API_KEY },
+      })
+      if (res.ok) {
+        const json = await res.json()
+        const data = json.record as AppData
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(data))
+        return data
+      }
+    } catch { /* fall through to localStorage */ }
   }
-}
-
-export function loadData(): AppData | null {
-  const raw = localStorage.getItem(KEY)
-  if (!raw) return envDefaults()
+  const raw = localStorage.getItem(LOCAL_KEY)
+  if (!raw) return null
   try {
     return JSON.parse(raw) as AppData
   } catch {
-    return envDefaults()
+    return null
   }
 }
 
-export function saveData(data: AppData): void {
-  localStorage.setItem(KEY, JSON.stringify(data))
+export async function saveData(data: AppData): Promise<void> {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(data))
+  if (BIN_ID && API_KEY) {
+    await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': API_KEY,
+      },
+      body: JSON.stringify(data),
+    })
+  }
 }

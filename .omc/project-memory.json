@@ -110,8 +110,20 @@
   "hotPaths": [
     {
       "path": "src/views/CounterView.vue",
-      "accessCount": 9,
-      "lastAccessed": 1778519801881,
+      "accessCount": 10,
+      "lastAccessed": 1778520722540,
+      "type": "file"
+    },
+    {
+      "path": "src/storage.ts",
+      "accessCount": 4,
+      "lastAccessed": 1778520867726,
+      "type": "file"
+    },
+    {
+      "path": "src/views/EditorView.vue",
+      "accessCount": 3,
+      "lastAccessed": 1778520733673,
       "type": "file"
     },
     {
@@ -124,12 +136,6 @@
       "path": "src/emojis.ts",
       "accessCount": 2,
       "lastAccessed": 1778519551155,
-      "type": "file"
-    },
-    {
-      "path": "src/storage.ts",
-      "accessCount": 2,
-      "lastAccessed": 1778519957945,
       "type": "file"
     },
     {
@@ -151,15 +157,15 @@
       "type": "file"
     },
     {
-      "path": "src/views/EditorView.vue",
-      "accessCount": 1,
-      "lastAccessed": 1778519526783,
-      "type": "file"
-    },
-    {
       "path": "src/App.vue",
       "accessCount": 1,
       "lastAccessed": 1778520445843,
+      "type": "file"
+    },
+    {
+      "path": "TEMP",
+      "accessCount": 1,
+      "lastAccessed": 1778520907707,
       "type": "file"
     }
   ],
