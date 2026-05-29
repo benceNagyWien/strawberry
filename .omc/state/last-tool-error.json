@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"npm run build 2>&1\",\"description\":\"Run build to check for errors\"}",
-  "error": "Exit code 2\n\n> sarah-countdown@1.0.0 build\n> vue-tsc && vite build\n\nsrc/storage.ts(12,34): error TS2339: Property 'env' does not exist on type 'ImportMeta'.\nsrc/storage.ts(16,31): error TS2339: Property 'env' does not exist on type 'ImportMeta'.\nsrc/storage.ts(17,28): error TS2339: Property 'env' does not exist on type 'ImportMeta'.\nsrc/storage.ts(18,28): error TS2339: Property 'env' does not exist on type 'ImportMeta'.\nsrc/storage.ts(19,29): error TS2339: Property 'env' does not exist on type '...",
-  "timestamp": "2026-05-11T17:24:32.066Z",
-  "retry_count": 1
-}

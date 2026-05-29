@@ -89,20 +89,20 @@
       <!-- Two emojis: fixed at bottom, move closer as days approach zero -->
       <span
         v-if="data.leftEmoji"
-        class="absolute top-1/2 md:top-[68%] left-0 select-none leading-none z-10"
+        class="absolute top-[75%] md:top-[68%] left-0 select-none leading-none z-20"
         :style="leftEmojiStyle"
       >{{ data.leftEmoji }}</span>
 
       <span
         v-if="data.rightEmoji"
-        class="absolute top-1/2 md:top-[68%] right-0 select-none leading-none z-10"
+        class="absolute top-[75%] md:top-[68%] right-0 select-none leading-none z-20"
         :style="rightEmojiStyle"
       >{{ data.rightEmoji }}</span>
 
-      <!-- Flag: centered between the two emojis -->
+      <!-- Flag: centered between the two emojis, behind the emojis -->
       <span
         v-if="data.flagEmoji"
-        class="absolute top-1/2 md:top-[80%] left-1/2 select-none leading-none z-10"
+        class="absolute top-[85%] md:top-[80%] left-1/2 select-none leading-none z-10"
         :style="{ fontSize: emojiFontSize, transform: 'translateX(-50%) translateY(-50%)' }"
       >{{ data.flagEmoji }}</span>
     </template>

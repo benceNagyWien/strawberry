@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1778519298699,
+  "lastScanned": 1780065140165,
   "projectRoot": "/Users/bencenagy/Documents/Projects/sarah",
   "techStack": {
     "languages": [
@@ -37,7 +37,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build 2>&1",
+    "buildCommand": "npm run build",
     "testCommand": null,
     "lintCommand": null,
     "devCommand": "npm run dev",
@@ -67,7 +67,7 @@
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 1,
-      "lastAccessed": 1778519298680,
+      "lastAccessed": 1780065140144,
       "keyFiles": [
         "index.html"
       ]
@@ -76,7 +76,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 5,
-      "lastAccessed": 1778519298681,
+      "lastAccessed": 1780065140145,
       "keyFiles": [
         "App.vue",
         "emojis.ts",
@@ -89,17 +89,17 @@
       "path": "dist/assets",
       "purpose": "Static assets",
       "fileCount": 2,
-      "lastAccessed": 1778519298684,
+      "lastAccessed": 1780065140149,
       "keyFiles": [
-        "index-BNiKOpjU.js",
-        "index-CRGJ1k1K.css"
+        "index-CD0YCTa-.js",
+        "index-XYwArCxk.css"
       ]
     },
     "src/views": {
       "path": "src/views",
       "purpose": "View templates",
       "fileCount": 3,
-      "lastAccessed": 1778519298685,
+      "lastAccessed": 1780065140150,
       "keyFiles": [
         "CounterView.vue",
         "EditorView.vue",
@@ -110,8 +110,8 @@
   "hotPaths": [
     {
       "path": "src/views/CounterView.vue",
-      "accessCount": 10,
-      "lastAccessed": 1778520722540,
+      "accessCount": 13,
+      "lastAccessed": 1780065290097,
       "type": "file"
     },
     {
