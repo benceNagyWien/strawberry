@@ -81,9 +81,6 @@
             :style="{ width: `${progress * 100}%` }"
           ></div>
         </div>
-        <p class="text-center text-white/20 text-xs mt-2 tabular-nums">
-          {{ Math.round(progress * 100) }}% der Zeit verstrichen
-        </p>
       </div>
 
       <!-- Two emojis: fixed at bottom, move closer as days approach zero -->
