@@ -145,7 +145,7 @@ function toLocalInput(iso: string): string {
 async function handleSave() {
   await saveData({
     targetDate: targetDate.value ? new Date(targetDate.value).toISOString() : '',
-    creationDate: creationDate.value || new Date().toISOString(),
+    creationDate: new Date().toISOString(),
     flagEmoji: flagEmoji.value,
     leftEmoji: leftEmoji.value,
     rightEmoji: rightEmoji.value,
